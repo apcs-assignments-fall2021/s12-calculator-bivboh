@@ -28,25 +28,13 @@ public class NumberPad {
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                field1.setText("1");
-            }
-        });
-
-        button2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                field1.setText("2");
-            }
-        });
-
-        button3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                field1.setText("3");
-            }
-        });
-
-        button4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                field1.setText("");
+                String buttonName = ae.getActionCommand();
+                if ("123".contains(buttonName)){
+                field1.setText(buttonName);
+                }
+                else if (buttonName.equals("Clear")){
+                    field1.setText("");
+                }
             }
         });
 
