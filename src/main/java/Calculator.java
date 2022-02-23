@@ -11,7 +11,7 @@ public class Calculator implements ActionListener {
     JButton button1, button2, button3, button4, button5,
             button6, button7, button8, button9, button0,
             buttonDivide, buttonTimes, buttonMinus, buttonPlus,
-            buttonClear, buttonEquals;
+            buttonClear, buttonEquals, buttonPow, buttonSqrt;
 
     // Instance variables that will be used for our math
     String op;
@@ -68,6 +68,10 @@ public class Calculator implements ActionListener {
         panel4.add(buttonEquals);
         buttonPlus = new JButton("+");
         panel4.add(buttonPlus);
+        buttonPow = new JButton("^");
+        panel4.add(buttonPow);
+        buttonSqrt = new JButton("sqrt");
+        panel4.add(buttonSqrt);
 
         // Add implemented actionListener method to each button
         button1.addActionListener(this);
@@ -86,6 +90,8 @@ public class Calculator implements ActionListener {
         buttonDivide.addActionListener(this);
         buttonTimes.addActionListener(this);
         buttonClear.addActionListener(this);
+        buttonPow.addActionListener(this);
+        buttonSqrt.addActionListener(this);
 
         // Add panels and everything to the actual frame
         frame.add(field1);
@@ -111,10 +117,14 @@ public class Calculator implements ActionListener {
             field1.setText("");
             arg1 = Integer.parseInt(null);
         }
-        else if ("+-*/".contains(buttonName)){
+        else if ("+-*/^".contains(buttonName)){
             arg1 = Integer.parseInt(field1.getText());
             op = buttonName;
             field1.setText("");
+        }
+        else if (buttonName.equals("sqrt")){
+            arg1 = (int) Math.sqrt(Double.parseDouble((field1.getText())));
+            field1.setText("" + Math.sqrt(Double.parseDouble((field1.getText()))));
         }
         else if (buttonName.equals("=")){
             if (op.equals("+")){
@@ -128,6 +138,9 @@ public class Calculator implements ActionListener {
             }
             if (op.equals("/")){
                 field1.setText("" + (arg1 / Integer.parseInt(field1.getText())));
+            }
+            if (op.equals("^")){
+                field1.setText("" + (Math.pow(arg1,Integer.parseInt(field1.getText()))));
             }
         }
     }
